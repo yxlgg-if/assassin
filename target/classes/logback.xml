@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration debug="true">
+
+    <contextName>assassin</contextName>
+    <!--日志输出组件，主要负责日志的输出以及格式化日志。  stdout:标准输出-->
+    <appender name ="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%thread] [%file:%line] [%logger] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <root>
+        <!--定义了appender，日志会通过往appender里面写-->
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
