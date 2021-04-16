@@ -13,6 +13,7 @@ import app.clientcls.config.IClientConfig;
 import app.clientcls.literacyevent.InteractiveMsgWhithTheServer;
 import app.interactive.InteractivePair;
 import app.model.MsgModel;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ClientMainThread implements Runnable, IAssassinThread {
 	
 	private IClientConfig<MsgModel, MsgModel> config;
+	
+	@Getter
 	private SocketChannel<? extends MsgModel, ? super MsgModel> socketChannel;
 	private boolean isAlive = false;
 	private Thread clientThread = null;
@@ -113,6 +116,7 @@ public class ClientMainThread implements Runnable, IAssassinThread {
 			try {
 				interactiveMsgWhithTheServer.waitServerMsg();
 			} catch (Exception e) {
+				e.printStackTrace();
 				log.warn("ClientThread[{}] waitServerMsg is exception,will excute stopClientThread.", this.config.getExposePort());
 				this.stopClientThread();
 				return;

@@ -1,58 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mystery</groupId>
   <artifactId>assassin</artifactId>
-  <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
   <name>assassin Maven Webapp</name>
+  <version>0.0.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.7</version>
-    </dependency>
-
-	<dependency>
-	  <groupId>org.projectlombok</groupId>
-	  <artifactId>lombok</artifactId>
-	  <version>1.18.8</version>
-	  <scope>provided</scope>
-	  <optional>true</optional>
-	</dependency>
-	
-	<dependency>
-	  <groupId>org.slf4j</groupId>
-	  <artifactId>slf4j-api</artifactId>
-	  <version>1.7.25</version>
-	</dependency>
-
-	<dependency>
-	  <groupId>ch.qos.logback</groupId>
-	  <artifactId>logback-classic</artifactId>
-	  <version>1.2.3</version>
-	</dependency>
-	
-    <dependency>
-	  <groupId>com.alibaba</groupId>
-	  <artifactId>fastjson</artifactId>
-	  <version>1.2.58</version>
-	</dependency>
-  </dependencies>
-  
   <build>
     <finalName>assassin</finalName>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
@@ -63,17 +20,6 @@
       </plugin>
     </plugins>
   </build>
-  
-  
-  <repositories>
-	<repository>
-	  <!-- Maven 自带的中央仓库使用的Id为central 如果其他的仓库声明也是用该Id 就会覆盖中央仓库的配置 -->
-	  <id>nexus-aliyun</id>
-	  <name>Nexus aliyun</name>
-	  <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-	</repository>
-  </repositories>
-  
   <profiles>
     <profile>
       <id>server</id>
@@ -81,7 +27,6 @@
         <finalName>AssassinServer</finalName>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
             <version>3.2.1</version>
             <executions>
@@ -94,7 +39,7 @@
                   <source>1.8</source>
                   <target>1.8</target>
                   <transformers>
-                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <transformer>
                       <mainClass>app.AssassinServer</mainClass>
                     </transformer>
                   </transformers>
@@ -105,14 +50,12 @@
         </plugins>
       </build>
     </profile>
-    
     <profile>
       <id>client</id>
       <build>
         <finalName>AssassinClient</finalName>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
             <version>3.2.1</version>
             <executions>
@@ -125,7 +68,7 @@
                   <source>1.8</source>
                   <target>1.8</target>
                   <transformers>
-                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <transformer>
                       <mainClass>app.AssassinClient</mainClass>
                     </transformer>
                   </transformers>
@@ -137,4 +80,26 @@
       </build>
     </profile>
   </profiles>
+  <repositories>
+    <repository>
+      <id>nexus-aliyun</id>
+      <name>Nexus aliyun</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.8</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 </project>

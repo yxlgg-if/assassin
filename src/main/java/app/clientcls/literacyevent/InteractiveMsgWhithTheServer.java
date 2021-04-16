@@ -56,7 +56,7 @@ public class InteractiveMsgWhithTheServer {
 	}
 	
 	public void processMsgFromServer(MsgModel msgModel) {
-		log.info("Server [{}:{}] command received.", this.config.getAssassinClientHost(), this.config.getAssassinServerPort());
+		log.info("Server [{}:{}] command received.", this.config.getAssassinServiceHost(), this.config.getAssassinServerPort());
 		
 		String msgType = msgModel.getMsgType();
 		MsgTypeEnum msgTypeEnum = MsgTypeEnum.matchEnumName(msgType);

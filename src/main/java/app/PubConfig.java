@@ -20,8 +20,9 @@ public final class PubConfig {
 	// 字符编码
 	public static final Charset charset = StandardCharsets.UTF_8;
 	// 服务端地址
-//	public static final String assassinServiceHost = "192.168.17.155";
+
 	public static final String assassinServiceHost = "127.0.0.1";
+
 	
 	// 服务端端口
 	public static final int assassinServerPort = 22222;

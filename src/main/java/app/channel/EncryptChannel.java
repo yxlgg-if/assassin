@@ -60,6 +60,15 @@ public class EncryptChannel extends SocketChannel<MsgModel, MsgModel>{
 		byte[] msgArray = readFromInputStream();
 		String msgString = new String(msgArray, charset);
 		// JSON字符串转换为JSON对象
+//		try {
+//			JSONObject msgJson = JSON.parseObject(msgString);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			System.out.println("msgArray:" + Arrays.toString(msgArray));
+//			System.out.println("msgArrayLen:" + msgArray.length);
+//			System.out.println("msgString:" + msgString);
+//			e.printStackTrace();
+//		}
 		JSONObject msgJson = JSON.parseObject(msgString);
 		// JSON对象转换成Java对象
 		EncryptMsgModel encryptMsgModel = msgJson.toJavaObject(EncryptMsgModel.class);
@@ -140,7 +149,25 @@ public class EncryptChannel extends SocketChannel<MsgModel, MsgModel>{
 			int msgLength = ConvertTools.bytesToInt(byteArray);
 			// 获取消息
 			byte[] msgArray = new byte[msgLength];
-			inputStream.read(msgArray, 0, msgLength);
+			// 直接读取在网络延迟比较大的时候导致比特流不完整
+//			inputStream.read(msgArray, 0, msgLength);
+			int readLength = 0;
+			
+			// 可能会出现死循环
+//			while(readLength < msgLength) {
+//				readLength += inputStream.read(msgArray, readLength, msgLength - readLength);
+//				System.out.println("readLength:" + readLength);
+//			}
+
+			while(readLength < msgLength) {
+				// 从流中获取数据存到比特数组msgArray readLength 到 msgLength - readLength 的位置
+				int read = inputStream.read(msgArray, readLength, msgLength - readLength);
+				// 判断数据流是否到末尾避免死循环
+				if (read == -1) {
+					break;
+				}
+				readLength += read;
+			}
 			return msgArray;
 		} finally {
 			readLock.unlock();
@@ -161,6 +188,8 @@ public class EncryptChannel extends SocketChannel<MsgModel, MsgModel>{
 			int msgLength = value.length;
 			outputStream.write(ConvertTools.intToBytes(msgLength));
 			outputStream.write(value);
+//			System.out.println("msgLength:" + msgLength);
+//			System.out.println("value:" + Arrays.toString(value));
 		} finally {
 			// TODO: handle finally clause
 			writeLock.unlock();

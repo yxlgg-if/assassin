@@ -64,6 +64,7 @@ public class SendHeartbeatThread implements Runnable{
 				this.sendHeartBeat();
 				retry = 0;
 			} catch (Exception e) {
+//				e.printStackTrace();
 				log.error("Send heartbeat Message exception [exposePort:{}]", this.config.getExposePort());
 				this.clientMainThread.stopClientThread();
 				
@@ -73,6 +74,7 @@ public class SendHeartbeatThread implements Runnable{
 						// ∑¢ÀÕ÷ÿ¡¨≥¢ ‘
 						boolean sendClientControlTag = this.clientMainThread.sendClientControl();
 						if (sendClientControlTag) {
+							this.socketChannel = this.clientMainThread.getSocketChannel();
 							this.clientMainThread.start();
 							log.info("The client[{}] reconnected successfully for the {} time.",
 									this.config.getExposePort(), retry);
