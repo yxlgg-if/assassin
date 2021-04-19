@@ -84,8 +84,8 @@ function server_bin() {
 function run() {
     argLen=${#args[@]}
     absLen=${#abs[@]}
-	[[ ${var1} ]] && [[ ! ${var2} ]] && [[ ${var1} == '--help' ]] && help
-	if [[ $argLen -ne $((`echo ${args[@]/${var1}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var2}/}|awk '{print NF}'`)) ]]; then
+    [[ ${var1} ]] && [[ ! ${var2} ]] && [[ ${var1} == '--help' ]] && help
+    if [[ $argLen -ne $((`echo ${args[@]/${var1}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var2}/}|awk '{print NF}'`)) ]]; then
         [[ ${var2} == '--server' ]] && server_bin ${var1} 'AssassinServer' && exit
         [[ ${var2} == '--client' ]] && server_bin ${var1} 'AssassinClient' && exit
     elif [[ $argLen -ne $((`echo ${args[@]/${var2}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var1}/}|awk '{print NF}'`)) ]]; then
