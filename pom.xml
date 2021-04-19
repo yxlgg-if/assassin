@@ -46,6 +46,12 @@
 	  <artifactId>fastjson</artifactId>
 	  <version>1.2.58</version>
 	</dependency>
+	
+	<dependency>
+      <groupId>org.ini4j</groupId>
+      <artifactId>ini4j</artifactId>
+      <version>0.5.4</version>
+    </dependency>
   </dependencies>
   
   <build>
@@ -102,6 +108,73 @@
               </execution>
             </executions>
           </plugin>
+          
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <!--打成jar包后复制到的路径-->
+                  <outputDirectory>
+                    app/conf
+                  </outputDirectory>  
+                  <resources>
+                    <resource>
+                      <!--项目中的路径-->
+                      <directory>conf/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <!--可配置多个提取复制路径只需要 “<id>”名字不一样即可-->
+              <execution>
+                <id>copy-bulid</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>
+                    app/lib
+                  </outputDirectory>   
+                  <resources>
+                    <resource>
+                      <directory>target/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>copy-bin</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <!--打成jar包后复制到的路径-->
+                  <outputDirectory>
+                    app/
+                  </outputDirectory>  
+                  <resources>
+                    <resource>
+                      <!--项目中的路径-->
+                      <directory>bin/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -129,6 +202,73 @@
                       <mainClass>app.AssassinClient</mainClass>
                     </transformer>
                   </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <!--打成jar包后复制到的路径-->
+                  <outputDirectory>
+                    app/conf
+                  </outputDirectory>  
+                  <resources>
+                    <resource>
+                      <!--项目中的路径-->
+                      <directory>conf/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <!--可配置多个提取复制路径只需要 “<id>”名字不一样即可-->
+              <execution>
+                <id>copy-bulid</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>
+                    app/lib
+                  </outputDirectory>   
+                  <resources>
+                    <resource>
+                      <directory>target/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>copy-bin</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <!--打成jar包后复制到的路径-->
+                  <outputDirectory>
+                    app/
+                  </outputDirectory>  
+                  <resources>
+                    <resource>
+                      <!--项目中的路径-->
+                      <directory>bin/</directory>
+                    </resource>
+                  </resources>
                 </configuration>
               </execution>
             </executions>

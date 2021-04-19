@@ -47,6 +47,74 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>default-testResources</id>
+                <phase>process-test-resources</phase>
+                <goals>
+                  <goal>testResources</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>default-resources</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>resources</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>copy-resources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/conf</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>conf/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-bulid</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/lib</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>target/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-bin</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>bin/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -72,6 +140,59 @@
                       <mainClass>app.AssassinClient</mainClass>
                     </transformer>
                   </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/conf</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>conf/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-bulid</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/lib</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>target/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-bin</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <outputDirectory>app/</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>bin/</directory>
+                    </resource>
+                  </resources>
                 </configuration>
               </execution>
             </executions>

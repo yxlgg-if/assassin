@@ -2,6 +2,10 @@ package app;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+import app.base.LoadIni;
 
 /**
  * 公共参数配置
@@ -10,36 +14,44 @@ import java.nio.charset.StandardCharsets;
  */
 public final class PubConfig {
 
-	/**
-	 * 
-	 */
-	public PubConfig() {
-		// TODO 自动生成的构造函数存根
+	static {
+		LoadIni.redIni();
 	}
 	
+
 	// 字符编码
 	public static final Charset charset = StandardCharsets.UTF_8;
 	// 服务端地址
 
-	public static final String assassinServiceHost = "127.0.0.1";
+//	public static final String assassinServiceHost = "127.0.0.1";
+//	
+//	public static final String assassinServiceHost = "192.168.17.155";
+	
+	public static final String assassinServiceHost = LoadIni.serverHost;
 
 	
 	// 服务端端口
-	public static final int assassinServerPort = 22222;
+	public static final int assassinServerPort = LoadIni.serverPort;
 	
 	// AES盐值
-	public static final String aesBaseKey = "U2FsdGVkX1/5RWtUxy/o63igqCuAqNWHxKAPG9JSSPw=";
+	public static final String aesBaseKey = LoadIni.aesBaseKey;
 	
 	// 签名盐值
-    public static final String autographsKey = "guagua";
+    public static final String autographsKey = LoadIni.autographsKey;
     
     // 映射对
-    public static ExposeMap[] ExposeMapingArray = new ExposeMap[] {
-            //
-    		ExposeMap.modelObj(8081, "127.0.0.1", 8080),
-            //
-    		ExposeMap.modelObj(8888, "127.0.0.1", 8080)
-    };
+    public static List<ExposeMap> ExposeMapingArray = PubConfig.sourceList();
+    
+    public static List<ExposeMap> sourceList() {
+    	List<ExposeMap> list = new ArrayList<>();
+		for (String key:LoadIni.map.keySet()) {
+			list.add(ExposeMap.modelObj(Integer.parseInt(key),
+					LoadIni.map.get(key).split(":")[0].replaceAll("(?:\"|')", ""),
+					Integer.parseInt(LoadIni.map.get(key).split(":")[1].replaceAll("(?:\"|')", ""))));
+		}
+		
+		return list;
+    }
     
     public static class ExposeMap {
     	// 客户端地址
@@ -57,7 +69,5 @@ public final class PubConfig {
     		return model;
     	}
     }
-    
-
 
 }
