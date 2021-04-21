@@ -23,46 +23,46 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MsgModel implements JSONAware {
 
-	// 消息序列
-	private String msgSeq;
-	
-	// 消息类型
-	private String msgType;
-	
-	// 消息内容
-	private JSONObject msgData;
-	
-	/**
-	 * 获取模型对象
-	 * @author yxlgg-if
-	 * @date 2021年3月30日 上午12:09:03
-	 * @param msgTypeEnum
-	 * @param msgData
-	 * @return
-	 */
-	public static MsgModel getMsgModelObject(MsgTypeEnum msgTypeEnum, Object msgData) {
-		return new MsgModel(DefineFormat.getMsgSeq(), msgTypeEnum.name(),
-				msgData == null ? null : JSON.parseObject(JSON.toJSONString(msgData)));
-	}
-	
-	/**
-	 * 重载模型对象
-	 * @author yxlgg-if
-	 * @date 2021年3月30日 上午12:08:32
-	 * @param msgSeq
-	 * @param msgTypeEnum
-	 * @param msgData
-	 * @return
-	 */
-	public static MsgModel getMsgModelObject(String msgSeq, MsgTypeEnum msgTypeEnum, Object msgData) {
-		return new MsgModel(msgSeq, msgTypeEnum.name(), 
-				msgData == null ? null : JSON.parseObject(JSON.toJSONString(msgData)));
-	}
-	
-//	public MsgModel() {
-//		
-//	}
-	
+    // 消息序列
+    private String msgSeq;
+    
+    // 消息类型
+    private String msgType;
+    
+    // 消息内容
+    private JSONObject msgData;
+    
+    /**
+     * 获取模型对象
+     * @author yxlgg-if
+     * @date 2021年3月30日 上午12:09:03
+     * @param msgTypeEnum
+     * @param msgData
+     * @return
+     */
+    public static MsgModel getMsgModelObject(MsgTypeEnum msgTypeEnum, Object msgData) {
+        return new MsgModel(DefineFormat.getMsgSeq(), msgTypeEnum.name(),
+                msgData == null ? null : JSON.parseObject(JSON.toJSONString(msgData)));
+    }
+    
+    /**
+     * 重载模型对象
+     * @author yxlgg-if
+     * @date 2021年3月30日 上午12:08:32
+     * @param msgSeq
+     * @param msgTypeEnum
+     * @param msgData
+     * @return
+     */
+    public static MsgModel getMsgModelObject(String msgSeq, MsgTypeEnum msgTypeEnum, Object msgData) {
+        return new MsgModel(msgSeq, msgTypeEnum.name(), 
+                msgData == null ? null : JSON.parseObject(JSON.toJSONString(msgData)));
+    }
+    
+//    public MsgModel() {
+//        
+//    }
+    
     public MsgModel(MsgModel msgModel) {
         this.setValue(msgModel);
     }
@@ -73,13 +73,13 @@ public class MsgModel implements JSONAware {
         this.setMsgData(msgModel.getMsgData());
     }
     
-	@Override
-	public String toJSONString() {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("msgSeq", msgSeq);
-		jsonObject.put("msgType", msgType);
-		jsonObject.put("msgData", msgData);
-		return jsonObject.toJSONString();
-	}
+    @Override
+    public String toJSONString() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("msgSeq", msgSeq);
+        jsonObject.put("msgType", msgType);
+        jsonObject.put("msgData", msgData);
+        return jsonObject.toJSONString();
+    }
 
 }

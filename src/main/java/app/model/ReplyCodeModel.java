@@ -17,37 +17,37 @@ import lombok.Data;
  */
 @Data
 public class ReplyCodeModel implements JSONAware {
-	
-	private String replyCode;
-	private String replyMsg;
-	private Object data;
+    
+    private String replyCode;
+    private String replyMsg;
+    private Object data;
 
-	public ReplyCodeModel(String replyCode, String replayMsg, Object data) {
-		// TODO 自动生成的构造函数存根
-		this.replyCode = replyCode;
-		this.replyMsg = replayMsg;
-		this.data = data;
-	}
-	
-	public static ReplyCodeModel replaySuccess() {
-		return new ReplyCodeModel(StatusCodeEnum.SUCCESS.getStatusCode(),
-				StatusCodeEnum.SUCCESS.getStatusName(), null);
-	}
+    public ReplyCodeModel(String replyCode, String replayMsg, Object data) {
+        // TODO 自动生成的构造函数存根
+        this.replyCode = replyCode;
+        this.replyMsg = replayMsg;
+        this.data = data;
+    }
+    
+    public static ReplyCodeModel replaySuccess() {
+        return new ReplyCodeModel(StatusCodeEnum.SUCCESS.getStatusCode(),
+                StatusCodeEnum.SUCCESS.getStatusName(), null);
+    }
 
-	public static ReplyCodeModel replayFail(Object data) {
-		return new ReplyCodeModel(StatusCodeEnum.UNKNOW_ERR.getStatusCode(),
-				StatusCodeEnum.UNKNOW_ERR.getStatusName(), data);
-	}
-	
-	public static ReplyCodeModel replyUnknowPort(Object data) {
-		return new ReplyCodeModel(StatusCodeEnum.NO_THIS_EXPOSE_PORT.getStatusCode(),
-				StatusCodeEnum.NO_THIS_EXPOSE_PORT.getStatusName(), data);
-	}
-	
-	public static ReplyCodeModel replyUnknowMsg(Object data) {
-		return new ReplyCodeModel(StatusCodeEnum.UNKNOW_MSG_TYPE.getStatusCode(),
-				StatusCodeEnum.UNKNOW_MSG_TYPE.getStatusName(), data);
-	}
+    public static ReplyCodeModel replayFail(Object data) {
+        return new ReplyCodeModel(StatusCodeEnum.UNKNOW_ERR.getStatusCode(),
+                StatusCodeEnum.UNKNOW_ERR.getStatusName(), data);
+    }
+    
+    public static ReplyCodeModel replyUnknowPort(Object data) {
+        return new ReplyCodeModel(StatusCodeEnum.NO_THIS_EXPOSE_PORT.getStatusCode(),
+                StatusCodeEnum.NO_THIS_EXPOSE_PORT.getStatusName(), data);
+    }
+    
+    public static ReplyCodeModel replyUnknowMsg(Object data) {
+        return new ReplyCodeModel(StatusCodeEnum.UNKNOW_MSG_TYPE.getStatusCode(),
+                StatusCodeEnum.UNKNOW_MSG_TYPE.getStatusName(), data);
+    }
 //    public ReplyCodeModel set(String fieldStr, Object object) {
 //        Field field = null;
 //        try {
@@ -68,18 +68,18 @@ public class ReplyCodeModel implements JSONAware {
 //        return this;
 //    }
     
-	@Override
-	public String toString() {
-		return this.toJSONString();
-	}
-	
-	@Override
-	public String toJSONString() {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("replyCode", replyCode);
-		jsonObject.put("replyMsg", replyMsg);
-		jsonObject.put("data", data);
-		
-		return jsonObject.toJSONString();
-	}
+    @Override
+    public String toString() {
+        return this.toJSONString();
+    }
+    
+    @Override
+    public String toJSONString() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("replyCode", replyCode);
+        jsonObject.put("replyMsg", replyMsg);
+        jsonObject.put("data", data);
+        
+        return jsonObject.toJSONString();
+    }
 }

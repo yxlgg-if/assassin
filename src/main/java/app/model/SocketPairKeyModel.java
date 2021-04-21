@@ -17,6 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SocketPairKeyModel {
 
-	private String socketPairKey;
+    private String socketPairKey;
 
 }

@@ -14,22 +14,22 @@ import app.channel.SocketChannel;
  * @date 2021年4月7日 下午6:56:28
  */
 public interface IClientConfig<R, W> {
-	
-	Integer getExposePort(); 
-	
-	String getAssassinClientHost();
+    
+    Integer getExposePort(); 
+    
+    String getAssassinClientHost();
 
-	Integer getAssassinPort();
+    Integer getAssassinPort();
 
-	String getAssassinServiceHost();
+    String getAssassinServiceHost();
 
-	Integer getAssassinServerPort();
+    Integer getAssassinServerPort();
 
-	String getAesBaseKey();
+    String getAesBaseKey();
 
-	String getAutographsKey();
+    String getAutographsKey();
 
-	Charset getCharset();
-	
-	SocketChannel<? extends R, ? super W> newSocketChannel();
+    Charset getCharset();
+    
+    SocketChannel<? extends R, ? super W> newSocketChannel();
 }

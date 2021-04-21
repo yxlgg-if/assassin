@@ -12,7 +12,7 @@ import app.model.MsgModel;
  * @date 2021年4月6日 上午13:54:00
  */
 public interface IProcessMsg {
-	boolean processMsg(SocketChannel<? extends MsgModel, ? super MsgModel> socketChannel, MsgModel msgModel) throws Exception;
-	
-	boolean checkExposePort(Integer exposePort);
+    boolean processMsg(SocketChannel<? extends MsgModel, ? super MsgModel> socketChannel, MsgModel msgModel) throws Exception;
+    
+    boolean checkExposePort(Integer exposePort);
 }

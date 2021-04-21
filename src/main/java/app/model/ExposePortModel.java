@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExposePortModel {
-	private Integer exposePort;
+    private Integer exposePort;
 }

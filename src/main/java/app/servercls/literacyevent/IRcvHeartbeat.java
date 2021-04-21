@@ -12,6 +12,6 @@ import app.channel.SocketChannel;
  * @date 2021年4月9日 下午7:13:40
  */
 public interface IRcvHeartbeat<R, W> {
-	boolean checkMsgType(R msgModel);
-	boolean processMsg(R msgModel, SocketChannel<? extends R, ? super W> socketChannel) throws Exception;
+    boolean checkMsgType(R msgModel);
+    boolean processMsg(R msgModel, SocketChannel<? extends R, ? super W> socketChannel) throws Exception;
 }

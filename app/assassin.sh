@@ -1,17 +1,17 @@
 #!/bin/bash
-# 启动脚本
+# 鍚姩鑴氭湰
 
 ### Usage:
 ###  ./assassin.sh [--server|--client] [Options]
 ### Options:
-###   --help      使用帮助.
-###   start       启动服务
-###   stop        停止服务
-###   restart     重启服务
-###   --server    指定为服务端
-###   --client    指定为客户端
+###   --help      浣跨敤甯姪.
+###   start       鍚姩鏈嶅姟
+###   stop        鍋滄鏈嶅姟
+###   restart     閲嶅惎鏈嶅姟
+###   --server    鎸囧畾涓烘湇鍔＄
+###   --client    鎸囧畾涓哄鎴风
 
-# 获取当前目录
+# 鑾峰彇褰撳墠鐩綍
 script_abs=`readlink -f "$0"`
 script_dir=`dirname $script_abs`
 
@@ -40,7 +40,8 @@ function err() {
 }
 
 function check_jdk() {
-    java -version || (echo "warning:未检测到jdk!!!" && exit)
+    java -version &> /dev/null
+    if [  `echo $?` -ne 0 ]; then echo "warning:鏈娴嬪埌jdk!!!" && exit; fi
 }
 
 function bin_start(){
@@ -82,10 +83,11 @@ function server_bin() {
 }
 
 function run() {
+    check_jdk
     argLen=${#args[@]}
     absLen=${#abs[@]}
-	[[ ${var1} ]] && [[ ! ${var2} ]] && [[ ${var1} == '--help' ]] && help
-	if [[ $argLen -ne $((`echo ${args[@]/${var1}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var2}/}|awk '{print NF}'`)) ]]; then
+    [[ ${var1} ]] && [[ ! ${var2} ]] && [[ ${var1} == '--help' ]] && help
+    if [[ $argLen -ne $((`echo ${args[@]/${var1}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var2}/}|awk '{print NF}'`)) ]]; then
         [[ ${var2} == '--server' ]] && server_bin ${var1} 'AssassinServer' && exit
         [[ ${var2} == '--client' ]] && server_bin ${var1} 'AssassinClient' && exit
     elif [[ $argLen -ne $((`echo ${args[@]/${var2}/}|awk '{print NF}'`)) ]] && [[ $absLen -ne $((`echo ${abs[@]/${var1}/}|awk '{print NF}'`)) ]]; then

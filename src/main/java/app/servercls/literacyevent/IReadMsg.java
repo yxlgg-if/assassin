@@ -18,9 +18,9 @@ import app.msgenum.MsgTypeEnum;
  * @date 2021年4月2日 下午7:02:55
  */
 public interface IReadMsg<R, W> {
-	void readClientMsg(Socket clientSocket) throws Exception;
-	
-	void processMsg(SocketChannel<? extends R, ? super W> socketChannel, MsgModel msgModel, MsgTypeEnum msgTypeEnum) throws Exception;
-	
-	void setMsgTypeEnumAndModel(Optional<? extends MsgModel> optional);
+    void readClientMsg(Socket clientSocket) throws Exception;
+    
+    void processMsg(SocketChannel<? extends R, ? super W> socketChannel, MsgModel msgModel, MsgTypeEnum msgTypeEnum) throws Exception;
+    
+    void setMsgTypeEnumAndModel(Optional<? extends MsgModel> optional);
 }

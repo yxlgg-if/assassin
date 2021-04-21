@@ -19,26 +19,26 @@ import app.channel.SocketChannel;
  * @date 2021年4月2日 上午12:18:34
  */
 public interface IServiceConfig<R, W> {
-	
-	Integer getExposePort();
+    
+    Integer getExposePort();
 
-	String getAssassinClientHost();
+    String getAssassinClientHost();
 
-	Integer getAssassinPort();
+    Integer getAssassinPort();
 
-	String getAssassinServiceHost();
+    String getAssassinServiceHost();
 
-	Integer getAssassinServerPort();
+    Integer getAssassinServerPort();
 
-	String getAesBaseKey();
+    String getAesBaseKey();
 
-	String getAutographsKey();
+    String getAutographsKey();
 
-	Charset getCharset();
-	
-	SocketChannel<? extends R, ? super W> newSocketChannel(Socket listenSocket) throws IOException;
-	
-	default public ServerSocket newServerSocket() throws IOException {
-		return new ServerSocket(this.getExposePort());
-	}
+    Charset getCharset();
+    
+    SocketChannel<? extends R, ? super W> newSocketChannel(Socket listenSocket) throws IOException;
+    
+    default public ServerSocket newServerSocket() throws IOException {
+        return new ServerSocket(this.getExposePort());
+    }
 }

@@ -40,7 +40,8 @@ function err() {
 }
 
 function check_jdk() {
-    java -version || (echo "warning:未检测到jdk!!!" && exit)
+    java -version &> /dev/null
+    if [  `echo $?` -ne 0 ]; then echo "warning:未检测到jdk!!!" && exit; fi
 }
 
 function bin_start(){
@@ -82,6 +83,7 @@ function server_bin() {
 }
 
 function run() {
+    check_jdk
     argLen=${#args[@]}
     absLen=${#abs[@]}
     [[ ${var1} ]] && [[ ! ${var2} ]] && [[ ${var1} == '--help' ]] && help
